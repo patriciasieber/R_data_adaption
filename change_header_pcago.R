@@ -1,6 +1,6 @@
 ## change header for pca plot
 
-setwd("/data/Postdoc/Proteomics_SilkeMachata/")
+setwd("/data/")
 
 
 ## add metadata to header (patient information)
