@@ -1,9 +1,10 @@
 ## compare GO/pathway categories and underlying genes between enrichr and innatedb
+## comparisons based on human data control vs treatment with Aspergillus fumigatus
 
 library(VennDiagram)
 library(readxl)
 
-setwd("/data/Postdoc/A_C3/enrichments/results/")
+setwd("/data/enrichments/results/")
 
 paths_innatedb <- list.files(pattern = "innatedb")
 paths_enrichr <- list.files(pattern = "enrichr")
@@ -92,7 +93,7 @@ sapply(1:4,function(i){
 
 
 
-setwd("/data/Postdoc/C_D3/results/")
+setwd("/data/results/")
 
 paths_innatedb <- list.files(pattern = "innatedb")
 paths_innatedb <- paths_innatedb[grep("xlsx",paths_innatedb)]
