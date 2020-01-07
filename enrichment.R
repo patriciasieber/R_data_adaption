@@ -1,4 +1,5 @@
-## enrichment analysis for A_C3 using enrichR and globaltest
+## enrichment analysis for human data using enrichR and globaltest
+## different states of control vs infection (early, middle, late) are compared
 
 # install.packages("enrichR")
 # if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -21,9 +22,9 @@ dem_alltargets <- read_excel("data/noP10--deg-all-targets-overlap.xlsx")
 
 # overlap of dem_alltargets and all degs!  -- same results as for dem_degs
 timepoints <- c("early","middle","late")
-# degs <- c("/data/Postdoc/A_C3/enrichments/data/noP10.T12.Wald.status.xls",
-#           "/data/Postdoc/A_C3/enrichments/data/noP10.T34.Wald.status.xls",
-#           "/data/Postdoc/A_C3/enrichments/data/noP10.T5.Wald.status.xls")
+# degs <- c("/data/enrichments/data/noP10.T12.Wald.status.xls",
+#           "/data/enrichments/data/noP10.T34.Wald.status.xls",
+#           "/data/enrichments/data/noP10.T5.Wald.status.xls")
 # demdeg_overlap <- lapply(seq(1,length(timepoints)),function(i){
 #   x <- degs[i]
 #   current <- read_excel(x)
@@ -108,16 +109,13 @@ dem_alltargets_enrichr_pathways <- apply_enrichr(dem_alltargets,dbs_pathways,out
 
 
 expr <- read.csv("/data/mrn.csv",sep="\t")
-expr <- expr[,!grepl("P010",colnames(expr))]
 colnames(expr) <- gsub("[.]","-",colnames(expr))
 
 
 ## only consider samples of interest (early, middle, late)
 ## according to /sbidata/pidomics/A_C3_Biobank_mRNA/doc/meta_data_timed_interval.v2.unique.xlsx
 
-samplesofinterest <- c("P043-7","P043-12","P043-14","P018-13","P018-15","P018-17",
-                       "P055-4","P055-8","P055-9","P063-4","P063-9","P063-10",
-                       "P015-16","P015-17","P015-18","P053-15","P053-16","P053-17")
+samplesofinterest <- NULL # TODO: fill!
 nrcols <- unlist(lapply(samplesofinterest,function(x){grep(x,colnames(expr))}))
 expr <- expr[,nrcols]
 
