@@ -3,7 +3,7 @@
 library("biomaRt")
 library("readxl")
 
-genes <- read.csv("/data/Postdoc/A_C3/deg_overlap_C_D3/deg_invitro_overlap_genes.csv",sep="\t")
+genes <- read.csv("/data/deg_overlap/deg_invitro_overlap_genes.csv",sep="\t")
 
 ensembl <- useMart("ensembl")
 ensembl <- useDataset("hsapiens_gene_ensembl",mart=ensembl)
@@ -27,7 +27,7 @@ genes$go_id <- unlist(lapply(gene2go,function(x) return(x[1])))
 genes$go_description <- unlist(lapply(gene2go,function(x) return(x[2])))
 
 
-write.table(genes,"/data/Postdoc/A_C3/deg_overlap_C_D3/deg_invitro_overlap_genes2go.csv",sep="\t",row.names=F)
+write.table(genes,"/data/deg_overlap/deg_invitro_overlap_genes2go.csv",sep="\t",row.names=F)
 
 
 gene2go <- lapply(as.character(genes$deg),function(x){
@@ -42,14 +42,14 @@ gene2go <- lapply(as.character(genes$deg),function(x){
 })
 gene2go <- do.call("rbind",gene2go)
 
-write.table(gene2go,"/data/Postdoc/A_C3/deg_overlap_C_D3/deg_invitro_overlap_genes2go.csv",sep="\t",row.names=F,quote=F)
+write.table(gene2go,"/data/deg_overlap/deg_invitro_overlap_genes2go.csv",sep="\t",row.names=F,quote=F)
 
 
 
 ## add information about innatedb 
-genes <- read.csv("/data/Postdoc/A_C3/deg_overlap_C_D3/deg_invitro_overlap_genes.csv",sep="\t",stringsAsFactors=F)
+genes <- read.csv("/data/deg_overlap/deg_invitro_overlap_genes.csv",sep="\t",stringsAsFactors=F)
 
-innatedb <- read_excel("/data/Postdoc/A_C3/deg_overlap_C_D3/innatedb_curated_genes.xls")
+innatedb <- read_excel("/data/deg_overlap/innatedb_curated_genes.xls")
 innatedb_genes <- unique(innatedb$`Gene Symbol`)
 
 in_innatedb <- sapply(genes$deg,function(x){ 
@@ -62,4 +62,4 @@ in_innatedb <- sapply(genes$deg,function(x){
 })
 
 genes$involvedinInnateDB <- in_innatedb
-write.table(genes,"/data/Postdoc/A_C3/deg_overlap_C_D3/deg_invitro_overlap_genes2InnateDB.csv",sep="\t",row.names=F,quote=F)
+write.table(genes,"/data/deg_overlap/deg_invitro_overlap_genes2InnateDB.csv",sep="\t",row.names=F,quote=F)
