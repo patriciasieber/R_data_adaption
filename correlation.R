@@ -8,7 +8,7 @@ library(RColorBrewer)
 
 
 setwd("/home/psieber/correlation_X_B_genelist/")
-R.utils::sourceDirectory("/sbidata/pidomics/X_B_eQTL/src/R/")
+R.utils::sourceDirectory("src/R/")
 
 #load("R_workspace.RData")
 #save(counts_bonn,get_mrn,file="correlation/correlation.RData")
