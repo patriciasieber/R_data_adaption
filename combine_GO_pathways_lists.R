@@ -1,9 +1,10 @@
+## comparison of RNA-Seq data between mouse and human 
 ## combine lists of common GO terms and pathways between mouse and human
 
 library("WriteXLS")
 
 
-setwd("/data/Postdoc/Proteomics_SilkeMachata/results/")
+setwd("/data/results/")
 
 lists_human <- list.files(pattern="regulated_significant.csv$", path="human/innatedb/",full.names=T)
 lists_mouse <- list.files(pattern="regulated_significant.csv$", path="mouse/innatedb/",full.names=T)
@@ -49,7 +50,7 @@ lapply(comparisons,function(comp){
   ## write to file
   WriteXLS::WriteXLS(
     comp_regulation,
-    ExcelFileName = paste0("mail7/figures_final/common",comp,"terms.xlsx"),
+    ExcelFileName = paste0("figures_final/common",comp,"terms.xlsx"),
     SheetNames = paste0(comp,"_",regulation,"regulation"),
     AdjWidth = T,
     BoldHeaderRow = T,
