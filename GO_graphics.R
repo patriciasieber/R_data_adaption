@@ -1,10 +1,10 @@
-
+## visualize Gene Ontology (GO) results from InnateDB
 ## part1: images of GO hierarchy using amigo ####
 ## filter GO terms by CC, BP, MF - all up- and down-regulated ones
 
 ## read files
-path_to_human <- "/data/Postdoc/Proteomics_SilkeMachata/results/human/innatedb/"
-path_to_mouse <- "/data/Postdoc/Proteomics_SilkeMachata/results/mouse/innatedb/"
+path_to_human <- "/data/results/human/innatedb/"
+path_to_mouse <- "/data/results/mouse/innatedb/"
 
 ## filter for main GO categories
 categories <- c("cellular component","biological process","molecular function")
@@ -28,8 +28,8 @@ for(g in c(path_to_human,path_to_mouse)){
 ## adapt to see up and down regulated terms
 
 ## part2: plots of GO term abundance ####
-path_to_human <- "/data/Postdoc/Proteomics_SilkeMachata/results/human/innatedb/revigo/"
-path_to_mouse <- "/data/Postdoc/Proteomics_SilkeMachata/results/mouse/innatedb/revigo/"
+path_to_human <- "/data/results/human/innatedb/revigo/"
+path_to_mouse <- "/data/results/mouse/innatedb/revigo/"
 
 
 regulation <- c("up","down")
@@ -174,8 +174,8 @@ for(g in c(path_to_human,path_to_mouse)){
 
 
 ## top 10 for mouse and human, up- and down-regulated
-path_to_human <- "/data/Postdoc/Proteomics_SilkeMachata/results/human/innatedb/revigo/"
-path_to_mouse <- "/data/Postdoc/Proteomics_SilkeMachata/results/mouse/innatedb/revigo/"
+path_to_human <- "/data/results/human/innatedb/revigo/"
+path_to_mouse <- "/data/results/mouse/innatedb/revigo/"
 
 regulation <- c("up","down")
 for(g in c(path_to_human,path_to_mouse)){
