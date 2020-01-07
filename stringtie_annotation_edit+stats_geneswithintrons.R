@@ -10,6 +10,8 @@ if(length(args) == 2){
   file_name <- args[2]
 }else stop("missing arguments",call.=F)
 
+# file_name_original_annot <- "/home/psieber/rnaseq_analysis/A_fumigatus/Aspergillus_fumigatusa1163.CADRE.31.gtf"
+# file_name <- "/sbidata/psieber/AlternativeSplicing/A_fumigatus/stringtie3_merge_g1.gtf"
 
 ## statistics of gene annotations
 
@@ -20,22 +22,8 @@ if(length(args) == 2){
 
 library(rtracklayer)
 
-## import gene annotation ####
-## gff3 file
-#file_name <- "/sbidata/psieber/AlternativeSplicing/H_capsulatum/stringtie_merge_g1.gtf"
-#file_name <- "/sbidata/psieber/AlternativeSplicing/C_neoformans/stringtie_merge_g1.gtf"
-#file_name <- "/sbidata/psieber/AlternativeSplicing/C_albicans/stringtie2_merge_g1.gtf"
-#file_name <- "/sbidata/psieber/AlternativeSplicing/C_albicans/stringtie_merge_g1.gtf"
-file_name <- "/sbidata/psieber/AlternativeSplicing/A_fumigatus/stringtie3_merge_g1.gtf"
-
 gff <- import.gff(file_name, format="gtf")
-#gff <- as(gff, "GRanges")
 
-
-#file_name_original_annot <- "/home/psieber/rnaseq_analysis/H_capsulatum/Hcapsulatum_G217B_2017-09-11.transcripts.gff3"
-#file_name_original_annot <- "/sbidata/shared2/Cryptococcus_neoformans/Cneoformans_var_grubii_h99_2017-08-21/annotation/Cryptococcus_neoformans_var_grubii_h99.CNA3.36.gff3"
-#file_name_original_annot <- "/home/psieber/rnaseq_analysis/C_albicans/C_albicans_SC5314_version_A22-s05-m05-r11_features.gff"
-file_name_original_annot <- "/home/psieber/rnaseq_analysis/A_fumigatus/Aspergillus_fumigatusa1163.CADRE.31.gtf"
 
 original_annot <- import.gff(file_name_original_annot)
 #original_annot <- as(original_annot, "GRanges")
@@ -43,8 +31,6 @@ original_annot <- import.gff(file_name_original_annot)
 types <- names(table(original_annot$type))
 if(any(grepl("transcript",types)) | any(grepl("mRNA",types))){ original_mrna <- original_annot[original_annot$type == "transcript" | original_annot$type == "mRNA",]
 }else stop("original annotation misses transcript or mRNA entries",call.=F)
-
-#original_mrna <- original_annot[original_annot$type == "gene",]
 
 mrna <- gff[gff$type == "transcript",]
 
